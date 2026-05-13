@@ -5,7 +5,7 @@ public class ProcessadorVendas {
         this.assentosDisponiveis = assentosDisponiveis;
     }
 
-    public void venderIngresso(int idadeCliente, double precoBase, String generoFilme) {
+    public void venderIngresso(int idadeCliente, double precoBase, String generoFilme) {//Refatoração (02.04): Aplicar Extração de Metodo para separar o cálculo de desconto da atualização de estoque. Renomear variáveis para nomes semânticos.
         validarEntradas(idadeCliente, precoBase, generoFilme);
         validarEstoque();
         validarClassificacaoEtica(idadeCliente, generoFilme);
@@ -16,7 +16,7 @@ public class ProcessadorVendas {
         System.out.println("Ingresso vendido com sucesso. Valor: R$ " + precoFinal);
     }
 
-    private void validarEntradas(int idadeCliente, double precoBase, String generoFilme) {
+    private void validarEntradas(int idadeCliente, double precoBase, String generoFilme) {//Programação Defensiva (02.03): Implementar cláusulas de guarda (Guard Clauses). Se o estoque for insuficiente ou o preço for negativo, o código deve lançar exceções claras em vez de falhar silenciosamente.
         if (idadeCliente < 0) {
             throw new IllegalArgumentException("A idade do cliente não pode ser negativa.");
         }
