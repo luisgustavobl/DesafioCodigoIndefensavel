@@ -27,8 +27,12 @@ public class Processador {
         // Imagine que aqui o estoque diminui sem checar se há assentos
 
     }
-    public void validarClassificacaoEtica(int idade, String tipoFilme){
-
+    public void validarClassificacaoEtica(int idadeCliente, String tipoFilme){
+        if (idadeCliente < 0){
+            throw new IllegalArgumentException("IDADE NÃO PODE SER NEGATIVA."+ idadeCliente);
+        } else if (idadeCliente < 18 && tipoFilme.toLowerCase().equals("terror")) {
+            throw new IllegalArgumentException("ERRO: IDADE INAPROPRIADA PARA TIPO DE FILME");
+        }
     }
 }
 
