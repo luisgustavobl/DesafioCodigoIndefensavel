@@ -5,8 +5,8 @@ public class ProcessadorVendas {
         this.assentosDisponiveis = assentosDisponiveis;
     }
 
-    public double venderIngresso(int idadeCliente, double precoBase, String generoFilme) {
-        validarEntradasBasicas(idadeCliente, precoBase, generoFilme);
+    public void venderIngresso(int idadeCliente, double precoBase, String generoFilme) {
+        validarEntradas(idadeCliente, precoBase, generoFilme);
         validarEstoque();
         validarClassificacaoEtica(idadeCliente, generoFilme);
         double precoFinal = calcularPrecoFinal(idadeCliente, precoBase);
@@ -14,10 +14,9 @@ public class ProcessadorVendas {
         atualizarEstoque();
 
         System.out.println("Ingresso vendido com sucesso. Valor: R$ " + precoFinal);
-        return precoFinal;
     }
 
-    private void validarEntradasBasicas(int idadeCliente, double precoBase, String generoFilme) {
+    private void validarEntradas(int idadeCliente, double precoBase, String generoFilme) {
         if (idadeCliente < 0) {
             throw new IllegalArgumentException("A idade do cliente não pode ser negativa.");
         }
@@ -50,8 +49,8 @@ public class ProcessadorVendas {
         return precoBase;
     }
 
-    private void atualizarEstoque() {
-        this.assentosDisponiveis--;
+    public void atualizarEstoque() {
+        this.assentosDisponiveis = assentosDisponiveis - 1;
     }
 
     public int getAssentosDisponiveis() {
